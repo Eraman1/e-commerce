@@ -1,10 +1,17 @@
+'use client';
 import React from 'react';
 import { Search, Package, Heart, User, ShoppingCart, Facebook, Instagram, Linkedin, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useCart } from "@/context/CartContext";
 
 const Header = () => {
+    const { cart } = useCart();
+
+    // Calculate total quantity
+    // const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const totalItems = cart.length;
     return (
         <div className="w-full">
             {/* Top Bar */}
@@ -98,9 +105,11 @@ const Header = () => {
                         </div>
                         <Link href="/cart" className='relative p-2'>
                             <ShoppingCart className="w-5 h-5 text-gray-600" />
-                            <span className="absolute -top-1 -right-1 bg-teal-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                                0
-                            </span>
+                            {totalItems > 0 && (
+                                <span className="absolute -top-1 -right-1 bg-teal-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                                    {totalItems}
+                                </span>
+                            )}
                         </Link>
 
 
