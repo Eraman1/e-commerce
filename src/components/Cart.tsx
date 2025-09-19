@@ -5,6 +5,7 @@ import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 import { X, Minus, Plus, Clock, ShoppingBag, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CartSidebarProps {
     isOpen: boolean;
@@ -111,16 +112,18 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                                         className="flex items-start space-x-2 p-2 bg-white border rounded-md hover:shadow-sm transition-shadow"
                                     >
                                         <Link href={`/product/${product.id}`} onClick={onClose}>
-                                            <img
+                                            <Image
+                                                width={64}
+                                                height={64}
                                                 src={product.image}
                                                 alt={product.title}
-                                                className="w-12 h-12 object-cover rounded-md flex-shrink-0"
+                                                className="object-cover rounded-md flex-shrink-0"
                                             />
                                         </Link>
 
                                         <div className="flex-1 min-w-0">
                                             <Link href={`/product/${product.id}`} onClick={onClose}>
-                                                <h4 className="font-medium text-sm text-gray-900 line-clamp-2 hover:text-teal-600 transition-colors">
+                                                <h4 className="font-medium text-[14px] text-gray-900 line-clamp-2 hover:text-teal-600 transition-colors">
                                                     {product.title}
                                                 </h4>
                                             </Link>

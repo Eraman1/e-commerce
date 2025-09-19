@@ -2,7 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  // swcMinify: true,
+  images: {
+    domains: ["cdn.pixabay.com"],
+  },
 };
 
 export default nextConfig;

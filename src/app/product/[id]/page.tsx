@@ -5,6 +5,7 @@ import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { products } from "@/data/product";
+import Image from "next/image";
 
 export default function ProductDetailPage() {
     const { id } = useParams();
@@ -26,13 +27,18 @@ export default function ProductDetailPage() {
     const quantity = getItemQuantity(product.id.toString());
 
     return (
-        <div className="max-w-4xl mx-auto p-6">
+        <div className="max-w-5xl mx-auto p-6">
             <div className="grid md:grid-cols-2 gap-6">
-                <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-auto rounded-lg shadow"
-                />
+                <div className="relative w-full aspect-[4/3] rounded-lg shadow overflow-hidden">
+                    <Image
+                        src={product.image}
+                        alt={product.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority
+                    />
+                </div>
 
                 <div>
                     <h1 className="text-2xl font-bold mb-2">{product.title}</h1>

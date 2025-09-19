@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Heart, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface Product {
     id: string;
@@ -51,11 +52,15 @@ const ProductCard = ({ product, onToggleFavorite }: { product: Product; onToggle
             <CardContent className="p-0 flex flex-col h-full">
                 <div className="relative">
                     <Link href={`/product/${product.id}`}>
-                        <img
-                            src={product.image}
-                            alt={product.title}
-                            className="w-full h-48 object-cover cursor-pointer"
-                        />
+                        <div className="relative w-full h-48 cursor-pointer">
+                            <Image
+                                src={product.image}
+                                alt={product.title}
+                                fill
+                                className="object-cover rounded"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                            />
+                        </div>
                     </Link>
 
                     <DiscountBadge discount={product.discount} />

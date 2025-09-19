@@ -20,7 +20,7 @@ const HomeMain = () => {
                     subtitle="Get up to 70% off on laptops, phones, and accessories. Limited time only!"
                     ctaText="Shop Now"
                     ctaLink="/shop"
-                    image="https://static.vecteezy.com/system/resources/previews/011/871/820/non_2x/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-vector.jpg" // Place this image inside public/banners/
+                    image="https://cdn.pixabay.com/photo/2016/05/30/23/24/ducks-1426010_1280.jpg" // Place this image inside public/banners/
                 />
                 <ProductGrid
                     products={products}

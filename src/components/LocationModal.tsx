@@ -25,12 +25,24 @@ interface DetectedLocation {
     country: string;
     pincode: string;
 }
+interface SearchResult {
+    display_name: string;
+    lat: string;
+    lon: string;
+    address?: {
+        road?: string;
+        suburb?: string;
+        city?: string;
+        state?: string;
+        postcode?: string;
+    };
+}
 
 export default function LocationModal({ isOpen, onClose, onLocationSelect }: LocationModalProps) {
     const [search, setSearch] = useState("");
     const [detectedLocation, setDetectedLocation] = useState<DetectedLocation | null>(null);
     const [isDetecting, setIsDetecting] = useState(false);
-    const [searchResults, setSearchResults] = useState<any[]>([]);
+    const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
     const [isSearching, setIsSearching] = useState(false);
     const [showAddAddress, setShowAddAddress] = useState(false);
     const [newAddress, setNewAddress] = useState({ label: "", address: "" });
@@ -177,7 +189,7 @@ export default function LocationModal({ isOpen, onClose, onLocationSelect }: Loc
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50  p-4">
             <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl relative max-h-[90vh] overflow-hidden">
                 {/* Header */}
                 <div className="flex justify-between items-center p-6 border-b bg-gradient-to-r from-teal-50 to-blue-50">

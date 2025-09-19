@@ -1,6 +1,5 @@
 // components/EcommerceBanner.tsx
 import Image from "next/image";
-import Link from "next/link";
 
 interface BannerProps {
     title: string;
@@ -20,9 +19,10 @@ export default function Banner({
     return (
         <section className="relative w-full h-auto mb-4 rounded-lg overflow-hidden">
             <div className="relative w-full h-[300px]">
-                <img
+                <Image
                     src={image}
                     alt="Banner Image"
+                    fill
                     className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-black/40"></div>

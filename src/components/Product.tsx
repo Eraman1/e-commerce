@@ -4,6 +4,7 @@ import React from 'react';
 import { Heart, ShoppingCart, Package, HelpCircle, Truck, RefreshCw, Phone, Tag, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import Image from 'next/image';
 
 // Types
 interface Product {
@@ -52,10 +53,12 @@ const ProductCard = ({ product, onAddToCart, onToggleFavorite }: {
     <Card className="relative overflow-hidden hover:shadow-lg py-2 transition-shadow">
         <CardContent className="p-0 flex flex-col h-full">
             <div className="relative">
-                <img
+                <Image
                     src={product.image}
                     alt={product.title}
-                    className="w-full h-48 object-cover"
+                    fill
+                    className="object-cover rounded-lg"
+                    sizes="100vw"
                 />
                 <DiscountBadge discount={product.discount} />
                 <FavoriteButton

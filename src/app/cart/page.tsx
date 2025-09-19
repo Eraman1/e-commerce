@@ -4,6 +4,7 @@ import React from "react";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CartPage() {
     const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
@@ -21,7 +22,7 @@ export default function CartPage() {
                 <div className="text-center text-gray-500">
                     <p className="mb-4">Your cart is empty.</p>
                     <Button asChild>
-                        <a href="/">Continue Shopping</a>
+                        <Link href="/">Continue Shopping</Link>
                     </Button>
                 </div>
             ) : (
@@ -34,10 +35,12 @@ export default function CartPage() {
                             >
                                 <div className="flex items-center gap-4">
                                     <Link href={`/product/${product.id}`}>
-                                        <img
+                                        <Image
                                             src={product.image}
                                             alt={product.title}
-                                            className="w-16 h-16 object-cover rounded-md"
+                                            width={64} // ✅ Width in pixels (16 * 4 = 64px)
+                                            height={64} // ✅ Height in pixels
+                                            className="rounded-md object-cover"
                                         />
                                     </Link>
                                     <div>
