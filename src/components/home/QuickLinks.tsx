@@ -4,7 +4,7 @@ import React from 'react';
 import { Package, HelpCircle, Truck, RefreshCw, Phone, Tag, DollarSign } from 'lucide-react';
 
 const QuickLinks = () => (
-    <aside className="w-84 bg-white rounded-lg shadow-sm p-6 h-fit sticky top-4">
+    <aside className="hidden lg:block w-84 bg-white rounded-lg shadow-sm p-6 h-fit sticky top-20">
         <h2 className="text-lg font-bold text-gray-800 mb-4">Quick Links</h2>
         <div className="space-y-3">
             <a href="#" className="flex items-center gap-3 text-gray-700 hover:text-teal-600 transition-colors">

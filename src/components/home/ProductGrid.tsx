@@ -16,7 +16,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products, onToggleFavorite })
                     key={product.id}
                     product={product}
                     onToggleFavorite={onToggleFavorite}
-                />
+                /> 
             ))}
         </div>
     );

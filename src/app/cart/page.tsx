@@ -3,12 +3,13 @@
 import React from "react";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function CartPage() {
     const { cart, removeFromCart, clearCart, updateQuantity } = useCart();
 
     const subtotal = cart.reduce(
-        (acc, item) => acc + item.salePrice * item.quantity,
+        (acc, product) => acc + product.salePrice * product.quantity,
         0
     );
 
@@ -26,37 +27,41 @@ export default function CartPage() {
             ) : (
                 <>
                     <ul className="space-y-4">
-                        {cart.map((item) => (
+                        {cart.map((product) => (
                             <li
-                                key={item.id}
+                                key={product.id}
                                 className="flex justify-between items-center border p-3 rounded-lg"
                             >
                                 <div className="flex items-center gap-4">
-                                    <img
-                                        src={item.image}
-                                        alt={item.title}
-                                        className="w-16 h-16 object-cover rounded-md"
-                                    />
+                                    <Link href={`/product/${product.id}`}>
+                                        <img
+                                            src={product.image}
+                                            alt={product.title}
+                                            className="w-16 h-16 object-cover rounded-md"
+                                        />
+                                    </Link>
                                     <div>
-                                        <p className="font-medium">{item.title}</p>
+                                        <Link href={`/product/${product.id}`}>
+                                            <p className="font-medium">{product.title}</p>
+                                        </Link>
                                         <p className="text-sm text-gray-500">
-                                            ₹{item.salePrice.toFixed(2)} each
+                                            ₹{product.salePrice.toFixed(2)} each
                                         </p>
                                         <div className="flex items-center gap-2 mt-1">
                                             <button
                                                 className="px-2 py-1 border rounded"
                                                 onClick={() =>
-                                                    updateQuantity(item.id, item.quantity - 1)
+                                                    updateQuantity(product.id, product.quantity - 1)
                                                 }
-                                                disabled={item.quantity <= 1}
+                                                disabled={product.quantity <= 1}
                                             >
                                                 −
                                             </button>
-                                            <span>{item.quantity}</span>
+                                            <span>{product.quantity}</span>
                                             <button
                                                 className="px-2 py-1 border rounded"
                                                 onClick={() =>
-                                                    updateQuantity(item.id, item.quantity + 1)
+                                                    updateQuantity(product.id, product.quantity + 1)
                                                 }
                                             >
                                                 +
@@ -67,12 +72,12 @@ export default function CartPage() {
 
                                 <div className="flex flex-col items-end">
                                     <p className="font-semibold">
-                                        ₹{(item.salePrice * item.quantity).toFixed(2)}
+                                        ₹{(product.salePrice * product.quantity).toFixed(2)}
                                     </p>
                                     <Button
                                         variant="destructive"
                                         size="sm"
-                                        onClick={() => removeFromCart(item.id)}
+                                        onClick={() => removeFromCart(product.id)}
                                         className="mt-2"
                                     >
                                         Remove

@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 export interface Product {
     id: string;
@@ -49,7 +50,14 @@ const ProductCard = ({ product, onToggleFavorite }: { product: Product; onToggle
         <Card className="relative overflow-hidden hover:shadow-lg py-2 transition-shadow">
             <CardContent className="p-0 flex flex-col h-full">
                 <div className="relative">
-                    <img src={product.image} alt={product.title} className="w-full h-48 object-cover" />
+                    <Link href={`/product/${product.id}`}>
+                        <img
+                            src={product.image}
+                            alt={product.title}
+                            className="w-full h-48 object-cover cursor-pointer"
+                        />
+                    </Link>
+
                     <DiscountBadge discount={product.discount} />
                     <FavoriteButton
                         isFavorite={product.isFavorite}
@@ -61,9 +69,11 @@ const ProductCard = ({ product, onToggleFavorite }: { product: Product; onToggle
                     <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">
                         {product.category}
                     </div>
-                    <h3 className="text-sm font-medium text-gray-800 mb-3 line-clamp-2">
-                        {product.title}
-                    </h3>
+                    <Link href={`/product/${product.id}`}>
+                        <h3 className="text-sm font-medium text-gray-800 mb-3 line-clamp-2 cursor-pointer">
+                            {product.title}
+                        </h3>
+                    </Link>
 
                     <div className="flex items-center gap-2 mb-3">
                         <span className="text-sm text-gray-400 line-through">
